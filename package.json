@@ -1,12 +1,12 @@
 {
   "name": "cocktail-nutritional-analysis",
   "version": "0.0.1",
-  "description": "A Quasar project that lists the nutritional analysis of cocktails",
+  "description": "A Quasar Project",
   "productName": "Cocktail Nutritional Analysis",
   "author": "EduardoMirandaz and GustavoOM",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
+    "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
     "build": "quasar build"
@@ -19,16 +19,13 @@
     "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
     "eslint": "^8.10.0",
     "eslint-plugin-vue": "^9.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "@types/node": "^12.20.21",
     "@quasar/app-vite": "^1.3.0",
     "autoprefixer": "^10.4.2",
-    "typescript": "^4.5.4"
+    "postcss": "^8.4.14"
   },
   "engines": {
     "node": "^18 || ^16 || ^14.19",

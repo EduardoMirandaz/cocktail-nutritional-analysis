@@ -1,6 +1,6 @@
 # Cocktail Nutritional Analysis (cocktail-nutritional-analysis)
 
-A Quasar project that lists the nutritional analysis of cocktails
+A Quasar Project
 
 ## Install the dependencies
 ```bash

@@ -10,7 +10,6 @@
 
 /* eslint func-names: 0 */
 /* eslint global-require: 0 */
-
 const { configure } = require('quasar/wrappers');
 
 module.exports = configure((/* ctx */) => ({
@@ -23,12 +22,12 @@ module.exports = configure((/* ctx */) => ({
     errors: true,
   },
 
-  // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
+  // https://v2.quasar.dev/quasar-cli/prefetch-feature
   // preFetch: true,
 
   // app boot file (/src/boot)
   // --> boot files are part of "main.js"
-  // https://v2.quasar.dev/quasar-cli-vite/boot-files
+  // https://v2.quasar.dev/quasar-cli/boot-files
   boot: [
 
     'axios',
@@ -112,7 +111,7 @@ module.exports = configure((/* ctx */) => ({
   // https://v2.quasar.dev/options/animations
   animations: [],
 
-  // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#sourcefiles
+  // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#property-sourcefiles
   // sourceFiles: {
   //   rootComponent: 'src/App.vue',
   //   router: 'src/router/index',
@@ -124,7 +123,7 @@ module.exports = configure((/* ctx */) => ({
   //   electronPreload: 'src-electron/electron-preload'
   // },
 
-  // https://v2.quasar.dev/quasar-cli-vite/developing-ssr/configuring-ssr
+  // https://v2.quasar.dev/quasar-cli/developing-ssr/configuring-ssr
   ssr: {
     // ssrPwaHtmlFilename: 'offline.html', // do NOT use index.html as name!
     // will mess up SSR
@@ -145,7 +144,7 @@ module.exports = configure((/* ctx */) => ({
     ],
   },
 
-  // https://v2.quasar.dev/quasar-cli-vite/developing-pwa/configuring-pwa
+  // https://v2.quasar.dev/quasar-cli/developing-pwa/configuring-pwa
   pwa: {
     workboxMode: 'generateSW', // or 'injectManifest'
     injectPwaMetaTags: true,
@@ -159,21 +158,22 @@ module.exports = configure((/* ctx */) => ({
     // extendPWACustomSWConf (esbuildConf) {}
   },
 
-  // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-cordova-apps/configuring-cordova
+  // Full list of options: https://v2.quasar.dev/quasar-cli/developing-cordova-apps/configuring-cordova
   cordova: {
     // noIosLegacyBuildFlag: true, // uncomment only if you know what you are doing
   },
 
-  // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-capacitor-apps/configuring-capacitor
+  // Full list of options: https://v2.quasar.dev/quasar-cli/developing-capacitor-apps/configuring-capacitor
   capacitor: {
     hideSplashscreen: true,
   },
 
-  // Full list of options: https://v2.quasar.dev/quasar-cli-vite/developing-electron-apps/configuring-electron
+  // Full list of options: https://v2.quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
   electron: {
     // extendElectronMainConf (esbuildConf)
     // extendElectronPreloadConf (esbuildConf)
 
+    // specify the debugging port to use for the Electron app when running in development mode
     inspectPort: 5858,
 
     bundler: 'packager', // 'packager' or 'builder'

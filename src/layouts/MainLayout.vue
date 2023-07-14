@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Análise Nutricional das Caipirinhas da Loira
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>SSC0961</div>
       </q-toolbar>
     </q-header>
 
@@ -28,7 +28,7 @@
         <q-item-label
           header
         >
-          Essential Links
+          Opções
         </q-item-label>
 
         <EssentialLink
@@ -45,7 +45,7 @@
   </q-layout>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 

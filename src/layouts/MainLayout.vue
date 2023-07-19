@@ -28,7 +28,7 @@
         <q-item-label
           header
         >
-          Opções
+          Opções:
         </q-item-label>
 
         <EssentialLink

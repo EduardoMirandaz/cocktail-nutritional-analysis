@@ -1,10 +1,13 @@
 <template>
-  <div class="contentCocktaillCard">
-    <h1 class="titleCocktaillCard">{{ title }}</h1>
+  <div class="contentCocktaillCard" :style="{ borderColor: cardColor }">
+    <p class="titleCocktaillCard">{{ title }}</p>
     <img class="imageCocktaillCard" :src="image" alt="cocktaill">
-    <div class="itensCocktaillCard">
-      <h2 class="itenCocktaillCard" v-for="iten in itens" :key="iten">{{ iten }}</h2>
-    </div>
+    <p class="itensCocktaillCard">
+      <span class="itenCocktaillCard"
+        v-for="iten in itens" :key="iten.brName" :style="{ borderColor: cardColor }">
+        {{ iten.brName }}
+      </span>
+    </p>
   </div>
 </template>
 
@@ -29,6 +32,54 @@ export default defineComponent({
       required: false,
     },
   },
+  data() {
+    return {
+      cardColor: '#ffffff',
+    };
+  },
+  mounted() {
+    this.cardColor = this.calculateAverageColor(
+      this.itens.reduce((cores, item) => (item.color ? [...cores, item.color] : cores), []),
+    );
+  },
+  methods: {
+    calculateAverageColor(colors) {
+      const rgbValues = colors.map((color) => this.hexToRgb(color));
+      let totalRed = 0;
+      let totalGreen = 0;
+      let totalBlue = 0;
+
+      rgbValues.forEach((rgb) => {
+        totalRed += rgb.r;
+        totalGreen += rgb.g;
+        totalBlue += rgb.b;
+      });
+
+      const averageRed = Math.round(totalRed / rgbValues.length);
+      const averageGreen = Math.round(totalGreen / rgbValues.length);
+      const averageBlue = Math.round(totalBlue / rgbValues.length);
+
+      const averageColor = this.rgbToHex(averageRed, averageGreen, averageBlue);
+
+      return averageColor;
+    },
+
+    hexToRgb(hex) {
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+
+      return { r, g, b };
+    },
+
+    rgbToHex(r, g, b) {
+      const redHex = r.toString(16).padStart(2, '0');
+      const greenHex = g.toString(16).padStart(2, '0');
+      const blueHex = b.toString(16).padStart(2, '0');
+
+      return `#${redHex}${greenHex}${blueHex}`;
+    },
+  },
 });
 </script>
 
@@ -38,7 +89,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid aliceblue;
+    border: 4px solid;
     border-radius: 20px;
     background-color: #111;
   }
@@ -47,6 +98,7 @@ export default defineComponent({
     color: aliceblue;
     font-size: 20px;
     text-align: center;
+    margin: 10px;
   }
 
   .imageCocktaillCard{
@@ -55,13 +107,23 @@ export default defineComponent({
     object-fit: cover;
   }
 
-  .itensCocktaillCard{
+  .itensCocktaillCard {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 200px;
+    margin: 10px 0;
+    justify-content: center;
+    row-gap: 6px; /* Espaçamento vertical entre as linhas */
   }
 
-  .itenCocktaillCard{
+  .itenCocktaillCard {
+    flex: 0 0 auto;
     font-size: 12px;
     color: aliceblue;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 0 2px;
+    padding: 2px 4px;
   }
 </style>

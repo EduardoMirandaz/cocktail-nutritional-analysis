@@ -30,63 +30,24 @@ export default defineComponent({
           title: 'Caipirinha de Acerola',
           image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
           itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
-          ],
-        },
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            'condensed milk', 'ice', 'acerola', 'vodka',
+            {
+              name: 'vodka',
+              brName: 'vodka',
+            },
+            {
+              name: 'ice',
+              brName: 'gelo',
+            },
+            {
+              name: 'condensed milk',
+              brName: 'leite condensado',
+              color: '#F3E8D4',
+            },
+            {
+              name: 'acerola',
+              brName: 'acerola',
+              color: '#FF3D44',
+            },
           ],
         },
       ],

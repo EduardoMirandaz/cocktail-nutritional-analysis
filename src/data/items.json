@@ -1,0 +1,116 @@
+[
+    {
+        "name": "vodka",
+        "brName": "vodka"
+    },
+    {
+        "name": "drips",
+        "brName": "pinga"
+    },
+    {
+        "name": "wine",
+        "brName": "vinho",
+        "color": "#24162D"
+    },
+    {
+        "name": "ice",
+        "brName": "gelo"
+    },
+    {
+        "name": "condensed milk",
+        "brName": "leite condensado",
+        "color": "#F3E8D4"
+    },
+    {
+        "name": "acerola",
+        "brName": "acerola",
+        "color": "#FF3D44"
+    },
+    {
+        "name": "pinapple",
+        "brName": "abacaxi",
+        "color": "#FFD431"
+    },
+    {
+        "name": "mint",
+        "brName": "hortelã",
+        "color": "#5B933B"
+    },
+    {
+        "name": "blue ice",
+        "brName": "blue ice",
+        "color": "#0898B6"
+    },
+    {
+        "name": "guava",
+        "brName": "goiaba",
+        "color": "#FE8775"
+    },
+    {
+        "name": "lemon",
+        "brName": "limão",
+        "color": "#81B23B"
+    },
+    {
+        "name": "blackberry",
+        "brName": "amora",
+        "color": "#919AB0"
+    },
+    {
+        "name": "coconut",
+        "brName": "coco",
+        "color": "#E4DFDF"
+    },
+    {
+        "name": "red fruits",
+        "brName": "frutas vermelhas",
+        "color": "#E4DFDF"
+    },
+    {
+        "name": "morango",
+        "brName": "strawberry",
+        "color": "#FA2F2D"
+    },
+    {
+        "name": "pêssego",
+        "brName": "peach",
+        "color": "#FFD37E"
+    },
+    {
+        "name": "grape",
+        "brName": "uva",
+        "color": "#8D306E"
+    },
+    {
+        "name": "mango",
+        "brName": "manga",
+        "color": "#FEC027"
+    },
+    {
+        "name": "cashew",
+        "brName": "caju",
+        "color": "#FECF25"
+    },
+    {
+        "name": "passion fruit",
+        "brName": "maracujá",
+        "color": "#FDAA09"
+    },
+    {
+        "name": "gooseberry",
+        "brName": "groselha",
+        "color": "#701829"
+    },
+    {
+        "name": "laka",
+        "brName": "laka",
+        "color": "#D0B99C"
+    }
+    ,
+    {
+        "name": "açaí",
+        "brName": "açaí",
+        "color": "#D0B99C"
+    }
+    
+] 

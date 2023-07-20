@@ -17,7 +17,7 @@
         @click="toggleLike"
       >
         <img class="likeButtonCocktaillCard"
-          :src="isLiked ? 'src/assets/filledHeart.png' : 'src/assets/emptyHeart.png'"
+          :src="isLiked ? 'https://cdn-icons-png.flaticon.com/128/833/833472.png' : 'https://cdn-icons-png.flaticon.com/128/1077/1077035.png'"
           alt="botão de like"
         >
       </div>
@@ -159,6 +159,7 @@ export default defineComponent({
   .itenCocktaillCard {
     flex: 0 0 auto;
     font-size: 12px;
+    height: 30px;
     color: aliceblue;
     border: 1px solid;
     border-radius: 5px;

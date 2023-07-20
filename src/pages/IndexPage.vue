@@ -30,9 +30,6 @@ export default defineComponent({
       cocktaills: cocktaillsData,
     };
   },
-  mounted() {
-    console.log(this.cocktaills);
-  },
 });
 </script>
 
@@ -52,5 +49,23 @@ export default defineComponent({
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
     grid-row-gap: 20px;
+  }
+
+  @media screen and (max-width: 1350px) {
+    .elementsHome {
+        grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .elementsHome {
+        grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+      .elementsHome {
+          grid-template-columns: repeat(1, 1fr);
+      }
   }
 </style>

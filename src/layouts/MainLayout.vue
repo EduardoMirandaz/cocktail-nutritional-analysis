@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Análise Nutricional das Caipirinhas da Loira
+          Análise Nutricional
         </q-toolbar-title>
 
         <div>SSC0961</div>

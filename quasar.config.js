@@ -22,6 +22,10 @@ module.exports = configure((/* ctx */) => ({
     errors: true,
   },
 
+  bin: {
+    linuxAndroidStudio: "/home/gustavo/android-studio/bin/studio.sh"
+  },
+
   // https://v2.quasar.dev/quasar-cli/prefetch-feature
   // preFetch: true,
 

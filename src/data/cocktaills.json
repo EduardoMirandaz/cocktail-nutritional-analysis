@@ -1,0 +1,262 @@
+[
+    {
+        "title": "Caipirinha de Acerola",
+        "like": true,
+        "image": "https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg",
+        "itens": [
+            {
+                "name": "vodka",
+                "brName": "vodka"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "acerola",
+                "brName": "acerola",
+                "color": "#FF3D44"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Abacaxi com Hortelã",
+        "like": true,
+        "image": "https://www.easyanddelish.com/wp-content/uploads/2016/07/Creamy-Pineapple-Coconut-Cocktail-Batida-de-Abacaxi-com-Coco-by-Denise-Browning-2.jpg",
+        "itens": [
+            {
+                "name": "vodka",
+                "brName": "vodka"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "pinapple",
+                "brName": "abacaxi",
+                "color": "#FFD431"
+            },
+            {
+                "name": "mint",
+                "brName": "hortelã",
+                "color": "#5B933B"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Goiaba",
+        "like": false,
+        "image": "https://fatgirlhedonist.com/wp-content/uploads/2022/12/2AC37C0C-6759-4268-A1FA-7BB50F30D485-scaled.jpeg",
+        "itens": [
+            {
+                "name": "drips",
+                "brName": "pinga"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "guava",
+                "brName": "goiaba",
+                "color": "#FE8775"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Açaí",
+        "like": false,
+        "image": "https://s2.glbimg.com/YTVcnBkFDmNOxt67QpwO5VKIcNU=/512x320/smart/e.glbimg.com/og/ed/f/original/2019/02/26/drink-acai.jpg",
+        "itens": [
+            {
+                "name": "drips",
+                "brName": "pinga"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "açaí",
+                "brName": "açaí",
+                "color": "#603445"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Morango",
+        "like": false,
+        "image": "https://www.cookerru.com/wp-content/uploads/2021/01/korean-strawberry-milk-feature-main-820x1024.jpg",
+        "itens": [
+            {
+                "name": "drips",
+                "brName": "pinga"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "strawberry",
+                "brName": "morango",
+                "color": "#FA2F2D"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Acerola",
+        "like": true,
+        "image": "https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg",
+        "itens": [
+            {
+                "name": "vodka",
+                "brName": "vodka"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "acerola",
+                "brName": "acerola",
+                "color": "#FF3D44"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Abacaxi com Hortelã",
+        "like": true,
+        "image": "https://www.easyanddelish.com/wp-content/uploads/2016/07/Creamy-Pineapple-Coconut-Cocktail-Batida-de-Abacaxi-com-Coco-by-Denise-Browning-2.jpg",
+        "itens": [
+            {
+                "name": "vodka",
+                "brName": "vodka"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "pinapple",
+                "brName": "abacaxi",
+                "color": "#FFD431"
+            },
+            {
+                "name": "mint",
+                "brName": "hortelã",
+                "color": "#5B933B"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Goiaba",
+        "like": false,
+        "image": "https://fatgirlhedonist.com/wp-content/uploads/2022/12/2AC37C0C-6759-4268-A1FA-7BB50F30D485-scaled.jpeg",
+        "itens": [
+            {
+                "name": "drips",
+                "brName": "pinga"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "guava",
+                "brName": "goiaba",
+                "color": "#FE8775"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Açaí",
+        "like": false,
+        "image": "https://s2.glbimg.com/YTVcnBkFDmNOxt67QpwO5VKIcNU=/512x320/smart/e.glbimg.com/og/ed/f/original/2019/02/26/drink-acai.jpg",
+        "itens": [
+            {
+                "name": "drips",
+                "brName": "pinga"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "açaí",
+                "brName": "açaí",
+                "color": "#603445"
+            }
+        ]
+    },
+    {
+        "title": "Caipirinha de Morango",
+        "like": false,
+        "image": "https://www.cookerru.com/wp-content/uploads/2021/01/korean-strawberry-milk-feature-main-820x1024.jpg",
+        "itens": [
+            {
+                "name": "drips",
+                "brName": "pinga"
+            },
+            {
+                "name": "ice",
+                "brName": "gelo"
+            },
+            {
+                "name": "condensed milk",
+                "brName": "leite condensado",
+                "color": "#F3E8D4"
+            },
+            {
+                "name": "strawberry",
+                "brName": "morango",
+                "color": "#FA2F2D"
+            }
+        ]
+    }
+]

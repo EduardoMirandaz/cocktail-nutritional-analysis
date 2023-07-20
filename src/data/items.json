@@ -67,13 +67,13 @@
         "color": "#E4DFDF"
     },
     {
-        "name": "morango",
-        "brName": "strawberry",
+        "name": "strawberry",
+        "brName": "morango",
         "color": "#FA2F2D"
     },
     {
-        "name": "pêssego",
-        "brName": "peach",
+        "name": "peach",
+        "brName": "pêssego",
         "color": "#FFD37E"
     },
     {
@@ -110,7 +110,7 @@
     {
         "name": "açaí",
         "brName": "açaí",
-        "color": "#D0B99C"
+        "color": "#603445"
     }
     
 ] 

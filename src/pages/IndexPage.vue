@@ -11,6 +11,7 @@
           :title="cocktaill.title"
           :itens="cocktaill.itens"
           :image="cocktaill.image"
+          :like="cocktaill.like"
           :key="cocktaill.image"/>
     </div>
   </div>
@@ -19,39 +20,18 @@
 <script>
 import { defineComponent } from 'vue';
 import CocktaillCard from '../components/CocktaillCard.vue';
+import cocktaillsData from '../data/cocktaills.json';
 
 export default defineComponent({
   name: 'IndexPage',
   components: { CocktaillCard },
   data() {
     return {
-      cocktaills: [
-        {
-          title: 'Caipirinha de Acerola',
-          image: 'https://i.ytimg.com/vi/MMcM9YkGmqk/maxresdefault.jpg',
-          itens: [
-            {
-              name: 'vodka',
-              brName: 'vodka',
-            },
-            {
-              name: 'ice',
-              brName: 'gelo',
-            },
-            {
-              name: 'condensed milk',
-              brName: 'leite condensado',
-              color: '#F3E8D4',
-            },
-            {
-              name: 'acerola',
-              brName: 'acerola',
-              color: '#FF3D44',
-            },
-          ],
-        },
-      ],
+      cocktaills: cocktaillsData,
     };
+  },
+  mounted() {
+    console.log(this.cocktaills);
   },
 });
 </script>

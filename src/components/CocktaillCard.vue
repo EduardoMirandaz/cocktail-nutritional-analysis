@@ -1,19 +1,19 @@
 <template>
-  <div class="contentCocktaillCard" :style="{ borderColor: cardColor }">
+  <div class="contentCocktaillCard" :style="{ borderColor: pixelColor }">
     <p class="titleCocktaillCard">{{ title }}</p>
-    <img class="imageCocktaillCard" :src="image" alt="cocktaill">
+    <img class="imageCocktaillCard" :src="image" alt="cocktaill" ref="imageRef">
     <p class="itensCocktaillCard">
       <span class="itenCocktaillCard"
-        v-for="iten in itens" :key="iten.brName" :style="{ borderColor: cardColor }">
+        v-for="iten in itens" :key="iten.brName" :style="{ borderColor: pixelColor }">
         {{ iten.brName }}
       </span>
     </p>
     <div class="buttonContainerCocktaillCard">
-      <q-btn class="infoButtonCocktaillCard" :style="{ backgroundColor: cardColor }">
+      <q-btn class="infoButtonCocktaillCard" :style="{ backgroundColor: pixelColor }">
         acessar informações
       </q-btn>
       <div class="likeButtonContentCocktaillCard"
-        :style="{ backgroundColor: cardColor }"
+        :style="{ backgroundColor: pixelColor }"
         @click="toggleLike"
       >
         <img class="likeButtonCocktaillCard"
@@ -35,17 +35,14 @@ export default defineComponent({
       type: String,
       required: true,
     },
-
     itens: {
       type: Array,
       required: true,
     },
-
     image: {
       type: String,
       required: true,
     },
-
     like: {
       type: Boolean,
       required: true,
@@ -53,57 +50,92 @@ export default defineComponent({
   },
   data() {
     return {
-      cardColor: '#ffffff',
+      pixelColor: null,
       isLiked: this.like,
+      isImageLoaded: false,
     };
   },
-  mounted() {
-    this.cardColor = this.calculateAverageColor(
-      this.itens.reduce((cores, item) => (item.color ? [...cores, item.color] : cores), []),
-    );
-  },
   methods: {
-    calculateAverageColor(colors) {
-      const rgbValues = colors.map((color) => this.hexToRgb(color));
-      let totalRed = 0;
-      let totalGreen = 0;
-      let totalBlue = 0;
-
-      rgbValues.forEach((rgb) => {
-        totalRed += rgb.r;
-        totalGreen += rgb.g;
-        totalBlue += rgb.b;
-      });
-
-      const averageRed = Math.round(totalRed / rgbValues.length);
-      const averageGreen = Math.round(totalGreen / rgbValues.length);
-      const averageBlue = Math.round(totalBlue / rgbValues.length);
-
-      const averageColor = this.rgbToHex(averageRed, averageGreen, averageBlue);
-
-      return averageColor;
+    arredonda(v) {
+      return 5 * (Math.round(v / 5));
     },
 
-    hexToRgb(hex) {
-      const r = parseInt(hex.substr(1, 2), 16);
-      const g = parseInt(hex.substr(3, 2), 16);
-      const b = parseInt(hex.substr(5, 2), 16);
-
-      return { r, g, b };
+    componentToHex(c) {
+      const hex = c.toString(16);
+      return hex.length === 1 ? `0${hex}` : hex;
     },
 
     rgbToHex(r, g, b) {
-      const redHex = r.toString(16).padStart(2, '0');
-      const greenHex = g.toString(16).padStart(2, '0');
-      const blueHex = b.toString(16).padStart(2, '0');
+      return `#${this.componentToHex(r)}${this.componentToHex(g)}${this.componentToHex(b)}`;
+    },
 
-      return `#${redHex}${greenHex}${blueHex}`;
+    getImageColor() {
+      // carrega uma imagem
+      const img = new Image();
+      img.src = this.image;
+
+      // cria um canvas invisível
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const context = canvas.getContext('2d');
+
+      // desenha a imagem no canvas
+      context.drawImage(img, 0, 0);
+
+      // recupera vetor de cores
+      const map = context.getImageData(0, 0, img.width, img.height).data;
+
+      // monta histograma
+      let hex;
+      let r;
+      let g;
+      let b;
+      const histograma = {};
+      for (let i = 0, len = map.length; i < len; i += 4) {
+        // recupera componentes de um ponto
+        r = this.arredonda(map[i]);
+        g = this.arredonda(map[i + 1]);
+        b = this.arredonda(map[i + 2]);
+        // alpha = map[i+2]; //ignora canal alpha
+
+        // valor em hexadecimal
+        hex = this.rgbToHex(r, g, b);
+
+        // adiciona no histograma ou incrementa se já existir
+        if (histograma[hex] === undefined) {
+          histograma[hex] = 1;
+        } else {
+          histograma[hex] += 1;
+        }
+      }
+
+      // recupera cor mais comum
+      let corMaisComum = null;
+      let frequenciaCorMaisComum = 0;
+      const keys = Object.keys(histograma);
+      for (let i = 0; i < keys.length; i += 1) {
+        const cor = keys[i];
+        if (frequenciaCorMaisComum < histograma[cor]) {
+          corMaisComum = cor;
+          frequenciaCorMaisComum = histograma[cor];
+        }
+      }
+
+      this.pixelColor = corMaisComum;
     },
-    toggleLike() {
-      // Altera o valor da propriedade like ao clicar no componente
-      this.$emit('update:like', !this.isLiked);
-      this.isLiked = !this.isLiked;
-    },
+  },
+  mounted() {
+    const image = this.$refs.imageRef;
+    if (image && image.complete) {
+      this.isImageLoaded = true;
+      this.getImageColor();
+    } else {
+      image.onload = () => {
+        this.isImageLoaded = true;
+        this.getImageColor();
+      };
+    }
   },
 });
 </script>
@@ -171,12 +203,12 @@ export default defineComponent({
     display: flex;
     justify-content: space-between;
     width: 200px;
-    height: 40px;
+    height: 50px;
     padding: 0 10px;
   }
 
   .infoButtonCocktaillCard{
-    height: 30px;
+    height: 40px;
     font-size: 10px;
     padding: 0 10px;
     display: flex;
@@ -185,9 +217,12 @@ export default defineComponent({
   }
 
   .likeButtonContentCocktaillCard{
-    height: 30px;
-    height: 30px;
+    height: 40px;
+    height: 40px;
     border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 4px 8px;
     cursor: pointer;
   }

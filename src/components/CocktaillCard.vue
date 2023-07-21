@@ -9,9 +9,11 @@
       </span>
     </p>
     <div class="buttonContainerCocktaillCard">
-      <q-btn @click="navegarParaDestino" class="infoButtonCocktaillCard">
-        acessar informações
-      </q-btn>
+      <router-link :to="`cocktail/${id}`">
+        <q-btn class="infoButtonCocktaillCard">
+          acessar informações
+        </q-btn>
+      </router-link>
       <div class="likeButtonContentCocktaillCard"
         @click="toggleLike"
       >
@@ -26,7 +28,6 @@
 
 <script>
 import { defineComponent } from 'vue';
-import router from '../router'; // Importe o Vue Router configurado.
 
 export default defineComponent({
   name: 'CocktaillCard',
@@ -66,9 +67,6 @@ export default defineComponent({
     toggleLike() {
       this.$emit('update:like', !this.isLiked);
       this.isLiked = !this.isLiked;
-    },
-    navegarParaDestino() {
-      router.push({ name: 'DescriptionPage', params: { id: this.id } });
     },
   },
 });

@@ -1,46 +1,28 @@
 <template>
   <div class="contentHome">
     <h1>DESCRIPTION PAGE {{ id }}</h1>
-    <div class="elementsHome">
-      <CocktaillCard
-        v-for="cocktaill in cocktaills"
-          :title="cocktaill.strDrink"
-          :image="cocktaill.strDrinkThumb"
-          :items="getIngredients(cocktaill)"
-          :id="cocktaill.idDrink"
-          :key="cocktaill.strDrinkThumb"/>
-    </div>
+    {{ console.log(cocktaills) }}
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { defineComponent } from 'vue';
-import CocktaillCard from '../components/CocktaillCard.vue';
+// import CocktaillCard from '../components/CocktaillCard.vue';
 
 export default defineComponent({
-  name: 'IndexPage',
-  components: { CocktaillCard },
+  name: 'description-page',
   props: [
     'id',
   ],
   data() {
     return {
-      cocktaills: [],
+      cocktaills: null,
     };
   },
   mounted() {
-    const alphabet = 'abcdefghijklmnopqrstvwyz';
-
-    const promises = alphabet.split('').map((letter) => (
-      axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
-        .then((response) => response.data.drinks)
-    ));
-
-    Promise.all(promises)
-      .then((results) => {
-        this.cocktaills = results.flat();
-      });
+    this.cocktaills = axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${this.id}`)
+      .then((response) => response.data);
   },
   methods: {
     getIngredients(cocktaill) {

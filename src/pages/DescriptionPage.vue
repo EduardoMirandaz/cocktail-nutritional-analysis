@@ -1,7 +1,8 @@
 <template>
   <div class="contentHome">
-    <h1>DESCRIPTION PAGE {{ id }}</h1>
-    {{ console.log(cocktaills) }}
+    <h1>DESCRIPTION PAGE {{ this.id }}</h1>
+    {{console.log("DESCRIPTION PAGE "+ this.id)}}
+    {{'cocktail:-->' + console.log(this.cocktail) }}
   </div>
 </template>
 
@@ -11,18 +12,25 @@ import { defineComponent } from 'vue';
 // import CocktaillCard from '../components/CocktaillCard.vue';
 
 export default defineComponent({
-  name: 'description-page',
-  props: [
-    'id',
-  ],
+  name: 'DescriptionPage',
+
   data() {
     return {
-      cocktaills: null,
+      id: null,
+      cocktail: null,
     };
   },
   mounted() {
-    this.cocktaills = axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${this.id}`)
+    const url = window.location.href;
+
+    // Separa a URL usando '/' como delimitador e pega o último elemento do array resultante
+    const partesDaURL = url.split('/');
+    const trechoDesejado = partesDaURL[partesDaURL.length - 1];
+
+    this.cocktail = axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${trechoDesejado}`)
       .then((response) => response.data);
+
+    this.id = trechoDesejado;
   },
   methods: {
     getIngredients(cocktaill) {

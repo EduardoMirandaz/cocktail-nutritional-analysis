@@ -13,6 +13,13 @@ const routes = [
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
   },
+
+  {
+    path: '/cocktail/:parametro',
+    name: 'DescriptionPage',
+    component: () => import('pages/DescriptionPage.vue'),
+    props: true,
+  },
 ];
 
 export default routes;

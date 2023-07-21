@@ -1,10 +1,6 @@
 <template>
   <div class="contentHome">
-    <q-img
-      alt="Banner Caipirinha da Loira"
-      src="~assets/banner.svg"
-      class="bannerHome"
-    />
+    <h1>DESCRIPTION PAGE {{ id }}</h1>
     <div class="elementsHome">
       <CocktaillCard
         v-for="cocktaill in cocktaills"
@@ -25,6 +21,9 @@ import CocktaillCard from '../components/CocktaillCard.vue';
 export default defineComponent({
   name: 'IndexPage',
   components: { CocktaillCard },
+  props: [
+    'id',
+  ],
   data() {
     return {
       cocktaills: [],

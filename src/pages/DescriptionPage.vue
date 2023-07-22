@@ -8,26 +8,28 @@
       Tags do drink: <br>
       {{ cocktail.strTags }}
     </h1>
-    <h1 id="categoriaDoDrink"
-      v-if="cocktail && cocktail.strCategory && cocktail.strCategory.trim() !== ''">
-      Categoria: <br>
-      {{ this.cocktail.strCategory }}
-    </h1>
     <div class="indicacaoSeContemAlcoolOuNao">
-      <h1 id="textoEhAlcoolico"
+      <div id="categoriaDoDrink"
+      v-if="cocktail && cocktail.strCategory && cocktail.strCategory.trim() !== ''">
+      Categoria:
+      {{ this.cocktail.strCategory }}
+      </div>
+      <div id="textoEhAlcoolico"
         v-if="cocktail && cocktail.strAlcoholic && cocktail.strAlcoholic === 'Alcoholic'">
         {{ console.log('temAlcool:::'+this.temAlcool) }}
-        Este drink {{this.temAlcool ? '' : 'não'}} tem alcool! <br>
-      </h1>
-      <img
+        Este drink {{this.temAlcool ? '' : 'não'}} contém alcool! <br>
+      </div>
+      <div class="imagemIndicandoSeEhAlcoolico">
+        <img
         id="imagemEhAlcoolico"
         :src="
           this.temAlcool
-            ? 'src/assets/TEM_ALCOOL.png'
+            ? 'src/assets/TEM_ALCOOL.svg'
             : 'src/assets/NAO_TEM_ALCOOL.png'
         "
         :alt="'Imagem do boneco mostrando que ' + (temAlcool ? '' : 'não') + ' tem alcool!'"
-      />
+        />
+      </div>
     </div>
     <IngredientsList :ingredients=ingredients></IngredientsList>
     <h1 id="recipienteDoDrink">Recipiente : {{ this.cocktail.strGlass }}</h1>
@@ -100,7 +102,7 @@ export default defineComponent({
   background-color: #222;
   justify-content: center;
   display: flex;
-  color: white;
+  color: antiquewhite;
   padding: 1rem;
   margin: 0;
 }
@@ -110,6 +112,7 @@ export default defineComponent({
   background-color: rgba(34, 34, 34, 0.8);
   border-color: aqua;
   justify-content: center;
+  padding: 2rem;
 }
 
 #fotoDoDrink{
@@ -122,8 +125,30 @@ export default defineComponent({
 
 }
 
-.separadorPagina {
+.indicacaoSeContemAlcoolOuNao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  color: antiquewhite;
+  gap: 18rem;
 
+}
+
+#imagemEhAlcoolico {
+  max-width: 5rem;
+  max-height: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+#categoriaDoDrink {
+  font-size: 2rem;
+}
+
+#textoEhAlcoolico {
+  font-size: 2rem;
 }
 
 </style>

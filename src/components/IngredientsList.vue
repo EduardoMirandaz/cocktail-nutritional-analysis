@@ -1,9 +1,9 @@
 <template>
+  <h2 id="tituloIngredientes">Ingredientes 🍸</h2>
   <div class="ingredientsList" >
-    <h2>Ingredientes</h2>
     <span class="itenCocktaillCard"
         v-for="item in ingredients" :key="item">
-        <h4>{{ item }}</h4>
+        <div>{{ item }}</div>
       </span>
   </div>
 </template>
@@ -35,5 +35,21 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+#tituloIngredientes {
+  display: flex;
+  margin: 0;
+  padding: 2rem;
+  justify-content: center;
+  background-color: aqua;
+  background-image: url('src/assets/separadorTituloIngredientes.svg');
+  max-height: 118px;
+  color: white;
+}
+
+.ingredientsList {
+  align-items: center;
+  font-size: 2rem;
+}
 
 </style>

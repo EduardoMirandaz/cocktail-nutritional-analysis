@@ -1,36 +1,86 @@
 <template>
-  <div class="contentHome">
-    <h1>DESCRIPTION PAGE {{ this.id }}</h1>
-    {{console.log("DESCRIPTION PAGE "+ this.id)}}
-    {{'cocktail:-->' + console.log(this.cocktail) }}
+  <div class="descriptionPage">
+    <h1 id="nomeDoDrink">{{ this.cocktail.strDrink }} 🍹</h1>
+    <div class="containerDaFoto">
+      <img id="fotoDoDrink" :src="this.cocktail.strDrinkThumb" alt="Foto do drink"/>
+    </div>
+    <h1 id="tagsDoDrink" v-if="cocktail && cocktail.strTags && cocktail.strTags.trim() !== ''">
+      Tags do drink: <br>
+      {{ cocktail.strTags }}
+    </h1>
+    <h1 id="categoriaDoDrink"
+      v-if="cocktail && cocktail.strCategory && cocktail.strCategory.trim() !== ''">
+      Categoria: <br>
+      {{ this.cocktail.strCategory }}
+    </h1>
+    <div class="indicacaoSeContemAlcoolOuNao">
+      <h1 id="textoEhAlcoolico"
+        v-if="cocktail && cocktail.strAlcoholic && cocktail.strAlcoholic === 'Alcoholic'">
+        {{ console.log('temAlcool:::'+this.temAlcool) }}
+        Este drink {{this.temAlcool ? '' : 'não'}} tem alcool! <br>
+      </h1>
+      <img
+        id="imagemEhAlcoolico"
+        :src="
+          this.temAlcool
+            ? 'src/assets/TEM_ALCOOL.png'
+            : 'src/assets/NAO_TEM_ALCOOL.png'
+        "
+        :alt="'Imagem do boneco mostrando que ' + (temAlcool ? '' : 'não') + ' tem alcool!'"
+      />
+    </div>
+    <IngredientsList :ingredients=ingredients></IngredientsList>
+    <h1 id="recipienteDoDrink">Recipiente : {{ this.cocktail.strGlass }}</h1>
+    <h1 id="modoDePreparoDoDrink">Modo de preparo : {{ this.cocktail.strInstructions }}</h1>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { defineComponent } from 'vue';
-// import CocktaillCard from '../components/CocktaillCard.vue';
+import IngredientsList from '../components/IngredientsList.vue';
 
 export default defineComponent({
   name: 'DescriptionPage',
+
+  components: { IngredientsList },
 
   data() {
     return {
       id: null,
       cocktail: null,
+      fotoDoDrink: null,
+      temAlcool: true,
+      ingredients: [],
     };
   },
   mounted() {
+    this.ingredients = this.getIngredients(this.cocktail);
+  },
+  created() {
     const url = window.location.href;
 
     // Separa a URL usando '/' como delimitador e pega o último elemento do array resultante
     const partesDaURL = url.split('/');
     const trechoDesejado = partesDaURL[partesDaURL.length - 1];
+    console.log(`trecho desejado:${trechoDesejado}`);
 
-    this.cocktail = axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${trechoDesejado}`)
-      .then((response) => response.data);
-
-    this.id = trechoDesejado;
+    axios.get(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${trechoDesejado}`)
+      .then((response) => {
+        if (Array.isArray(response.data.drinks) && response.data.drinks.length > 0) {
+          this.cocktail = response.data.drinks?.[0];
+          console.log(this.cocktail);
+          this.id = trechoDesejado;
+          this.fotoDoDrink = this.cocktail.strDrinkThumb;
+          this.temAlcool = this.cocktail.strAlcoholic === 'Alcoholic';
+        } else {
+          console.error('Coquetel não encontrado :(');
+        }
+      })
+      .catch((error) => {
+        // Trate erros aqui, se necessário
+        console.error('Erro na solicitação: ', error);
+      });
   },
   methods: {
     getIngredients(cocktaill) {
@@ -45,44 +95,35 @@ export default defineComponent({
 </script>
 
 <style scoped>
-  .contentHome{
-    background-color: #000;
-  }
-  .bannerHome{
-    width: 100%;
-    border-bottom: 2px solid aliceblue;
-  }
-  .elementsHome{
-    justify-items: center;
-    align-items: center;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 10px;
-    grid-row-gap: 20px;
-  }
 
-  @media screen and (max-width: 1650px) {
-    .elementsHome {
-        grid-template-columns: repeat(4, 1fr);
-    }
-  }
+#nomeDoDrink{
+  background-color: #222;
+  justify-content: center;
+  display: flex;
+  color: white;
+  padding: 1rem;
+  margin: 0;
+}
 
-  @media screen and (max-width: 1350px) {
-    .elementsHome {
-        grid-template-columns: repeat(3, 1fr);
-    }
-  }
+.containerDaFoto {
+  display: flex;
+  background-color: rgba(34, 34, 34, 0.8);
+  border-color: aqua;
+  justify-content: center;
+}
 
-  @media screen and (max-width: 1100px) {
-    .elementsHome {
-        grid-template-columns: repeat(2, 1fr);
-    }
-  }
+#fotoDoDrink{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-right: 0;
+  border-radius: 3rem;
 
-  @media screen and (max-width: 600px) {
-      .elementsHome {
-          grid-template-columns: repeat(1, 1fr);
-      }
-  }
+}
+
+.separadorPagina {
+
+}
+
 </style>

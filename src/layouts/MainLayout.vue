@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Análise Nutricional
+          Gudu Cocktails
         </q-toolbar-title>
 
         <div>SSC0961</div>
@@ -43,6 +43,18 @@
       <router-view />
     </q-page-container>
   </q-layout>
+  <div class="footer">
+    <h5 id="nomeDesenvolvedores">Desenvolvido por
+      <span class="linkToGithubName" @click="navegarPara('https://github.com/EduardoMirandaz')">
+        Eduardo Miranda
+      </span>
+      e
+      <span class="linkToGithubName" @click="navegarPara('https://github.com/GustavoOM')">
+        Gustavo Martins
+      </span>
+    </h5>
+    <h5 id="nomeDisciplina">Desenvolvimento Web e Mobile - SSC0961</h5>
+  </div>
 </template>
 
 <script>
@@ -52,28 +64,25 @@ import EssentialLink from 'components/EssentialLink.vue';
 const linksList = [
 
   {
-    title: 'Caipirinhas favoritas',
-    caption: '@quasarframework',
-    icon: 'favorite',
-    link: '#',
+    title: 'Back home',
+    icon: 'home',
+    link: '/',
   },
   {
-    title: 'Documentação do projeto',
-    caption: 'Documentação utilizada',
+    title: 'Caipirinhas favoritas',
+    icon: 'favorite',
+    link: '/',
+  },
+  {
+    title: 'Project documentation',
     icon: 'school',
     link: 'https://github.com/EduardoMirandaz/cocktail-nutritional-analysis#readme',
   },
   {
-    title: 'Github',
-    caption: 'github.com/EduardoMirandaz/cocktail-nutritional-analysis',
+    title: 'Project repository',
+    caption: 'Github',
     icon: 'code',
     link: 'https://github.com/EduardoMirandaz/cocktail-nutritional-analysis',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.com',
   },
 ];
 
@@ -95,5 +104,36 @@ export default defineComponent({
       },
     };
   },
+  methods: {
+    navegarPara(url) {
+      window.open(url, '_blank');
+    },
+  },
 });
 </script>
+
+<style scoped>
+
+.footer {
+  background-color: #222;
+  color: white;
+  margin: 0;
+  padding-top: 0;
+  text-align: center;
+}
+
+#nomeDesenvolvedores {
+  margin: 0;
+  padding: 0;
+}
+
+#nomeDisciplina {
+  margin: 0;
+}
+
+.linkToGithubName {
+  text-decoration: underline;
+  font-style: italic;
+  cursor: pointer;
+}
+</style>

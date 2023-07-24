@@ -1,12 +1,12 @@
 <template>
-  <div class="ingredientsContainer">
-    <h2 id="tituloIngredientes">Ingredients 📗</h2>
-    <div class="ingredientsList" >
-      <span class="itemIngredientsList"
-          v-for="item in ingredients" :key="item">
-          <div class="item" @click="redirecionarParaBusca(item)">{{ item }}</div>
-      </span>
-    </div>
+  <div class="tagsContainer">
+      <h2 id="tituloTags">Drink Tags 📌</h2>
+      <div class="tagsList" >
+        <span class="itemTagsList"
+            v-for="tag in tags" :key="tag">
+            <div class="tag" @click="redirecionarParaBusca(tag)">{{ tag }}</div>
+        </span>
+      </div>
   </div>
 </template>
 
@@ -14,9 +14,9 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'IngredientsList',
+  name: 'TagsList',
   props: {
-    ingredients: {
+    tags: {
       type: Array,
       required: true,
     },
@@ -39,7 +39,7 @@ export default defineComponent({
 
 <style scoped>
 
-#tituloIngredientes {
+#tituloTags {
   display: flex;
   margin: 0;
   padding: 2rem;
@@ -52,12 +52,12 @@ export default defineComponent({
 }
 
 @media (max-width: 490px) {
-  #tituloIngredientes {
+  #tituloTags {
     font-size: 2.5rem;
   }
 }
 
-.ingredientsList {
+.tagsList {
   align-items: center;
   font-size: 2rem;
   display: grid;
@@ -65,10 +65,10 @@ export default defineComponent({
   gap: 0.1rem;
   margin: 0 1rem;
   padding-bottom: 1rem;
-
 }
 
-.item{
+.tag{
+  cursor: pointer;
   display: flex;
   justify-content: center;
   color: white;
@@ -79,10 +79,9 @@ export default defineComponent({
   min-height: 4rem;
   margin-top: 1rem;
   box-shadow: 0 0 0 0.5rem rgba(34, 34, 34, 0.8);
-  cursor: pointer;
 }
 
-.ingredientsContainer {
+.tagsContainer {
   background-color: rgba(34, 34, 34, 0.8);
 }
 

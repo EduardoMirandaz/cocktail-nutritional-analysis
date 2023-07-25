@@ -15,7 +15,7 @@
           Gudu Cocktails
         </q-toolbar-title>
 
-        <div>SSC0961</div>
+        <div style="margin-right: 2rem;font-size: 1rem;">{{usuarioLogado}}</div>
       </q-toolbar>
     </q-header>
 
@@ -92,7 +92,11 @@ export default defineComponent({
   components: {
     EssentialLink,
   },
-
+  data() {
+    return {
+      usuarioLogado: '',
+    };
+  },
   setup() {
     const leftDrawerOpen = ref(false);
 
@@ -104,7 +108,13 @@ export default defineComponent({
       },
     };
   },
+  mounted() {
+    this.recuperarUsuarioLogado();
+  },
   methods: {
+    recuperarUsuarioLogado() {
+      this.usuarioLogado = localStorage.getItem('usuarioLogado');
+    },
     navegarPara(url) {
       window.open(url, '_blank');
     },

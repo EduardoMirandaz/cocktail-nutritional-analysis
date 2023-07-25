@@ -26,9 +26,10 @@
             label="Your password *"
             hint="Insert your password"
             :rules="[validatePassword]"
+            type="password"
           ></q-input>
           <q-toggle @input="programaticSubmit" v-model="accept"
-          label="I accept the license and terms" ></q-toggle>
+          label="JavaScript é bom" ></q-toggle>
           <div>
             <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" ></q-btn>
             <q-btn label="Submit" type="submit" color="primary" @click="onSubmit"

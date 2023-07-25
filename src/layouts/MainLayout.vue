@@ -16,6 +16,9 @@
         </q-toolbar-title>
 
         <div style="margin-right: 2rem;font-size: 1rem;">{{usuarioLogado}}</div>
+        <span @click="logout">
+          <img src="../assets/LOGOUT.png" alt="Logout image" style="width: 2rem;">
+        </span>
       </q-toolbar>
     </q-header>
 
@@ -117,6 +120,10 @@ export default defineComponent({
     },
     navegarPara(url) {
       window.open(url, '_blank');
+    },
+    logout() {
+      localStorage.clear();
+      window.location.href = '/auth';
     },
   },
 });

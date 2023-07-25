@@ -28,6 +28,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { supabase } from '../lib/supabaseClient';
 
 export default defineComponent({
   name: 'CocktaillCard',
@@ -61,12 +62,118 @@ export default defineComponent({
     return {
       cardColor: '#ffffff',
       isLiked: this.like,
+      likedBy: [],
     };
+  },
+  mounted() {
+    this.populateLikedBy();
   },
   methods: {
     toggleLike() {
       this.$emit('update:like', !this.isLiked);
       this.isLiked = !this.isLiked;
+      try {
+        // Start the logic recovering the likes
+        supabase
+          .from('cocktail_likes')
+          .select('*')
+          .eq('cocktail_id', this.id)
+          .then((response) => {
+            const { data, error } = response;
+            if (error) {
+              console.error('Impossible to recover cocktail likes');
+            } else {
+              let tmpLikedBy = data[0].liked_by;
+              if (tmpLikedBy.trim() !== '') {
+                tmpLikedBy = tmpLikedBy.split(';');
+                // If the user just liked the cocktail:
+                if (this.isLiked) {
+                  const newLikedBy = `${data[0].liked_by};${localStorage.getItem('usuarioLogado')}`;
+                  supabase
+                    .from('cocktail_likes')
+                    .update({ liked_by: newLikedBy })
+                    .eq('cocktail_id', this.id)
+                    .then((response_) => {
+                      if (response_.error) {
+                        console.error("Couldn't update liked by list.", error);
+                      } else {
+                        console.log("Success, you've liked another cocktail!", data);
+                        this.likedBy = newLikedBy.split(';');
+                        console.log('likedBy após ter curtido uma caipirinha!');
+                        console.log(this.likedBy);
+                      }
+                    });
+                } else {
+                  // If the user just unliked a cocktail
+                  console.log('Antes de remover o like:');
+                  console.log(tmpLikedBy);
+                  const newLikedBy = tmpLikedBy.filter((user) => user !== localStorage.getItem('usuarioLogado'));
+                  supabase
+                    .from('cocktail_likes')
+                    .update({ liked_by: `${newLikedBy.join(';')}` })
+                    .eq('cocktail_id', this.id)
+                    .then((response_) => {
+                      if (response_.error) {
+                        console.error("Couldn't update liked by list.", error);
+                      } else {
+                        console.log("Success, you've liked another cocktail!", data);
+                        this.likedBy = data[0].liked_by.split(';');
+                        console.log('Depois de remover o like:');
+                        console.log(this.likedBy);
+                      }
+                    });
+                }
+                // Here, there was no likes in the cocktail yet
+              } else {
+                const newLikedBy = `${localStorage.getItem('usuarioLogado')}`;
+                supabase
+                  .from('cocktail_likes')
+                  .update({ liked_by: newLikedBy })
+                  .eq('cocktail_id', this.id)
+                  .then((response_) => {
+                    if (response_.error) {
+                      console.error("Couldn't update liked by list.", error);
+                    } else {
+                      console.log("Success, you've liked another cocktail!", data);
+                      this.likedBy = [newLikedBy];
+                    }
+                  });
+              }
+            }
+          });
+      } catch (error) {
+        console.error('Error trying to update database', error);
+      }
+    },
+    verifyLikesFromCard() {
+      if (this.likedBy.includes(localStorage.getItem('usuarioLogado'))) {
+        this.isLiked = true;
+      }
+    },
+    populateLikedBy() {
+      supabase
+        .from('cocktail_likes')
+        .select('*')
+        .eq('cocktail_id', this.id)
+        .then((response) => {
+          if (response.data[0] === undefined) {
+            supabase
+              .from('cocktail_likes')
+              .insert({ cocktail_id: this.id, liked_by: '' })
+              .then((response_) => {
+                const { error } = response_;
+                this.likedBy = [];
+                if (error) {
+                  console.error('Impossible to insert the cocktail', error);
+                }
+              });
+          } else {
+            this.likedBy = response.data[0].liked_by.split(';');
+            if (this.likedBy.includes(localStorage.getItem('usuarioLogado'))) {
+              this.isLiked = true;
+            }
+          }
+        });
     },
   },
 });

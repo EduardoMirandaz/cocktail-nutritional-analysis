@@ -2,8 +2,8 @@
   <div class="contentCocktaillCard" :style="{ borderColor: cardColor }">
     <p class="titleCocktaillCard">{{ title }}</p>
     <img class="imageCocktaillCard" :src="image" alt="cocktaill">
-    <p class="itensCocktaillCard">
-      <span class="itenCocktaillCard"
+    <p class="cocktaillCardItems">
+      <span class="cocktaillCardItem"
         v-for="item in items" :key="item">
         {{ item }}
       </span>
@@ -11,7 +11,7 @@
     <div class="buttonContainerCocktaillCard">
       <router-link :to="`cocktail/${id}`">
         <q-btn class="infoButtonCocktaillCard">
-          acessar informações
+          cocktail details
         </q-btn>
       </router-link>
       <div class="likeButtonContentCocktaillCard"
@@ -22,7 +22,18 @@
           alt="botão de like"
         >
       </div>
+      <div class="likesCounter">
+        {{ countLikes(this.likedBy) }}
+      </div>
     </div>
+
+    <div class="likedByPreviewContainer" v-if="countLikes(this.likedBy) > 0">
+      <div class="likedByTitle" @click="toggleShowAllUsersThatLiked">❤️ Liked By :</div>
+      <div :class="`likedByPreviewList ${showAllUsersThatLiked ? 'multiline-text' : ''}`">
+        {{ getLikedByListStr(likedBy) }}
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -50,7 +61,7 @@ export default defineComponent({
 
     like: {
       type: Boolean,
-      required: true,
+      default: false,
     },
 
     id: {
@@ -63,6 +74,7 @@ export default defineComponent({
       cardColor: '#ffffff',
       isLiked: this.like,
       likedBy: [],
+      showAllUsersThatLiked: false,
     };
   },
   mounted() {
@@ -99,7 +111,6 @@ export default defineComponent({
                       } else {
                         console.log("Success, you've liked another cocktail!", data);
                         this.likedBy = newLikedBy.split(';');
-                        console.log('likedBy após ter curtido uma caipirinha!');
                         console.log(this.likedBy);
                       }
                     });
@@ -108,6 +119,7 @@ export default defineComponent({
                   console.log('Antes de remover o like:');
                   console.log(tmpLikedBy);
                   const newLikedBy = tmpLikedBy.filter((user) => user !== localStorage.getItem('usuarioLogado'));
+                  this.likedBy = newLikedBy;
                   supabase
                     .from('cocktail_likes')
                     .update({ liked_by: `${newLikedBy.join(';')}` })
@@ -116,8 +128,7 @@ export default defineComponent({
                       if (response_.error) {
                         console.error("Couldn't update liked by list.", error);
                       } else {
-                        console.log("Success, you've liked another cocktail!", data);
-                        this.likedBy = data[0].liked_by.split(';');
+                        console.log("Success, you've unliked another cocktail!", data);
                         console.log('Depois de remover o like:');
                         console.log(this.likedBy);
                       }
@@ -144,6 +155,18 @@ export default defineComponent({
       } catch (error) {
         console.error('Error trying to update database', error);
       }
+    },
+    toggleShowAllUsersThatLiked() {
+      this.$emit('update:showAllUsersThatLiked', !this.showAllUsersThatLiked);
+      this.showAllUsersThatLiked = !this.showAllUsersThatLiked;
+    },
+    getLikedByListStr(likedByList) {
+      const filteredList = likedByList.filter((item) => item !== '');
+      return filteredList.join(', ');
+    },
+    countLikes(likedByList) {
+      const filteredList = likedByList.filter((item) => item !== '');
+      return filteredList.length;
     },
     verifyLikesFromCard() {
       if (this.likedBy.includes(localStorage.getItem('usuarioLogado'))) {
@@ -187,6 +210,7 @@ export default defineComponent({
     align-items: center;
     border-radius: 10px;
     background-color: #222;
+    min-height: 31.26rem;
   }
 
   .titleCocktaillCard{
@@ -211,7 +235,7 @@ export default defineComponent({
     border-radius: 10px;
   }
 
-  .itensCocktaillCard {
+  .cocktaillCardItems {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -227,7 +251,7 @@ export default defineComponent({
     line-height: 1.8em;
   }
 
-  .itenCocktaillCard {
+  .cocktaillCardItem {
     flex: 0 0 auto;
     font-size: 12px;
     height: 30px;
@@ -272,4 +296,37 @@ export default defineComponent({
     height: 25px;
     height: 25px;
   }
+
+  .likedByPreviewContainer {
+    color: white;
+  }
+
+  .likedByTitle {
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: rgba(51, 48, 47, 0.919);
+    justify-content: center;
+    display: flex;
+    min-width: 11.25rem;
+  }
+
+  .likedByPreviewList {
+    color: white;
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-bottom: 1rem;
+  }
+
+  .likesCounter {
+    color: white;
+    padding-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .multiline-text {
+    white-space: normal !important;
+  }
+
 </style>

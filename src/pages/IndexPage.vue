@@ -7,7 +7,7 @@
     />
     <div class="elementsHome">
       <CocktaillCard
-        v-for="cocktaill in cocktaills"
+        v-for="cocktaill in getCocktailsWithSelectedFilter(cocktaills)"
           :title="cocktaill.strDrink"
           :image="cocktaill.strDrinkThumb"
           :items="getIngredients(cocktaill)"
@@ -28,6 +28,7 @@ export default defineComponent({
   data() {
     return {
       cocktaills: [],
+      showOnlyLikedCocktails: false,
     };
   },
   mounted() {
@@ -50,6 +51,9 @@ export default defineComponent({
         .map((key) => cocktaill[key])
         .filter((ingredient) => ingredient && ingredient.trim());
       return ingredients;
+    },
+    getCocktailsWithSelectedFilter(cocktails) {
+      return cocktails;
     },
   },
 });

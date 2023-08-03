@@ -72,11 +72,6 @@ const linksList = [
     link: '/',
   },
   {
-    title: 'Caipirinhas favoritas',
-    icon: 'favorite',
-    link: '/',
-  },
-  {
     title: 'Project documentation',
     icon: 'school',
     link: 'https://github.com/EduardoMirandaz/cocktail-nutritional-analysis#readme',

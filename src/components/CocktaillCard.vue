@@ -96,7 +96,11 @@ export default defineComponent({
               console.error('Impossible to recover cocktail likes');
             } else {
               let tmpLikedBy = data[0].liked_by;
-              if (tmpLikedBy.trim() !== '') {
+              let isEmpty = tmpLikedBy === null;
+              if (!isEmpty) {
+                isEmpty = tmpLikedBy.trim() === '';
+              }
+              if (!isEmpty) {
                 tmpLikedBy = tmpLikedBy.split(';');
                 // If the user just liked the cocktail:
                 if (this.isLiked) {
@@ -111,13 +115,10 @@ export default defineComponent({
                       } else {
                         console.log("Success, you've liked another cocktail!", data);
                         this.likedBy = newLikedBy.split(';');
-                        console.log(this.likedBy);
                       }
                     });
                 } else {
                   // If the user just unliked a cocktail
-                  console.log('Antes de remover o like:');
-                  console.log(tmpLikedBy);
                   const newLikedBy = tmpLikedBy.filter((user) => user !== localStorage.getItem('usuarioLogado'));
                   this.likedBy = newLikedBy;
                   supabase
@@ -129,8 +130,6 @@ export default defineComponent({
                         console.error("Couldn't update liked by list.", error);
                       } else {
                         console.log("Success, you've unliked another cocktail!", data);
-                        console.log('Depois de remover o like:');
-                        console.log(this.likedBy);
                       }
                     });
                 }

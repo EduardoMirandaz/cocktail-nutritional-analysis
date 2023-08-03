@@ -33,3 +33,5 @@ yarn-error.log*
 .env.local*
 
 supabase_key.js
+
+populateTable.py
